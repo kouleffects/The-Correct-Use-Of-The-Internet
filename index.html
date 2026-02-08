@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css"></link>
+	<title>What is the correct use of the internet</title>
+	<style>
+	body{
+		font-family: sans-serif;
+		text-align: center;
+		padding-top: 50px;
+		transition: 0.5s;
+	}
+	
+	.result-item{
+		margin-bottom: 20px;
+	}
+	
+	.result-item a{
+		color: blue;
+		font-size: 18px;
+		text-decoration: none;
+	}
+	
+	input{
+		padding: 10px;
+		width: 300px;
+	}
+	
+	h1{
+		color: black;
+		text-shadow: 0 0 6px;
+	}
+	
+	/*Τονισμός επικίνδυνων λέξεων*/
+	.seed-word{
+		color: red;
+		font-weight: bold;
+		text-shadow: 0 0 6px rgba(255,0,0,0.8);
+		display: inline-block;
+		position: relative;
+		cursor: pointer;
+		animation: glitchFlicker 0.2s infinite;
+	}
+	
+	@keyframes glitchFlicker{
+		0%{opacity: 1; transform: traslate(0,0) skewX(0deg);}
+		20%{opacity: 0.5; transform: traslate(1px,-1px) skewX(10deg);}
+		40%{opacity: 1; transform: traslate(-1px,1px) skewX(-10deg);}
+		60%{opacity: 0.1; transform: traslate(1px,0) skewX(6deg);}
+		80%{opacity: 1; transform: traslate(1px,1px) skewX(-6deg);}
+		100%{opacity: 1; transform: traslate(0,0) skewX(0deg);}
+	}
+	
+	/*Overlay Screen Saver Οθόνης*/
+	#screensaver{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: black;
+		color: #00ff00;
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		z-index: 10000;
+		font-family: 'Courier New', monnospace;
+		overflow: hidden;
+	}
+	
+	#glitch-text{
+		font-size: 5rem;
+		position: relative;
+		text-shadow: 0.05em 0 0 rgba(255,0,0,0.75),
+					-0.025em -0.05em 0 rgba(0,255,0,0.75),
+					0.025em 0.05em 0 rgba(0,0,255,0.75);
+		animation: glitch 500ms infinite;
+	}
+	
+	@keyframes glitch{
+		0%{transform: translate(0);}
+		20%{transform: translate(-5px,5px);}
+		40%{transform: translate(-5px,-5px);}
+		60%{transform: translate(5px,5px);}
+		80%{transform: translate(5px,-5px);}
+		100%{transform: translate(0);}
+	}
+	
+	.scanlines{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%
+		height: 100%
+		background: linear-gradient(rgba(18,16,16,0)50%, rgba(0,0,0,0.25)50%),
+					linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.2), rgba(0,0,255,0.06));
+		background-size: 100% 4px, 3px 100%;
+		pointer-events: none;
+	}
+	
+	/*#bait-suggestion{
+		max-width: 500px;
+        margin: 10px auto;
+        padding: 5px;
+        background: rgba(0,0,0,0.05);
+        border-radius: 4px;
+        display: none;
+	}
+	
+	.bait-link{
+		color: #1a0dab;
+		text-decoration: underline;
+		cursor: pointer;
+		font-style: italic;
+	}
+	
+	.bait-link:hover{
+		color: red;
+	}*/
+	</style>
+</head>
+	<body>
+		<div id="screensaver">
+			<div class="glitch-container">
+				<h1 id="glitch-text" data-text="SYSTEM IDLE">SYSTEM IDLE</h1>
+			</div>
+			<div class="scanlines"></div>
+		</div>
+		<h1>What is the correct use of the internet?</h1>
+		<p><a href="About.html">About</a></p>
+		<h3>Search</h3>
+		<input id="query" type="text" placeholder="Search with Google or insert a link"></input>
+		<button onClick="runSearch()">Submit</button>
+		<p>TEST: <span class="seed-word">word</span></p>
+		<div id="results"></div>
+		<script src="script3.js"></script>
+		<script>
+		document.getElementById("query").addEventListener("keydown",function(event){
+			if(event.key==="Enter")
+			{
+				event.preventDefault();
+				runSearch();
+			}
+		});
+		</script>
+	</body>
+</html>

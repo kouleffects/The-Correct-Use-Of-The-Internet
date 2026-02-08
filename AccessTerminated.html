@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css"></link>
+	<script src="script2.js"></script>
+	<title>ACCESS TERMINATED</title>
+	<style>
+	body{
+		font-family: sans-serif;
+		text-align: center;
+		padding-top: 50px;
+		transition: 0.5s;
+		background-color: black;
+	}
+	.result-item{
+		margin-bottom: 20px;
+	}
+	.result-item a{
+		color: blue;
+		font-size: 18px;
+		text-decoration: none;
+	}
+	input{
+		padding: 10px;
+		width: 300px;
+	}
+	</style>
+</head>
+	<body>
+		<!--<h1>What is the correct use of the internet?</h1>-->
+		<a href="About.html">About</a>
+		<!--<h3>Search</h3>-->
+		<!--<input id="query" type="text" placeholder="Search with Google or insert a link"></input>-->
+		<h2 style="color: lime">ACCESS TERMINATED</h2>
+		<p style="color: red">Your access to information has been revoked!</p>
+		<button id="button">Go Back</button>
+		<div id="results"></div>
+		<script>
+		let btn=document.querySelector("button");
+		
+		btn.addEventListener("click",()=>{
+			window.location.href="index.html"
+		});
+
+		window.addEventListener("keydown",function(event){
+			if(event.key==="Enter")
+			{
+				window.location.href="index.html"
+			}
+		});			
+		</script>
+
+	</body>
+</html>
