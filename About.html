@@ -4,10 +4,29 @@
 	<meta charset="UTF-8">
 	<title>About: "What is the correct use of the internet"</title>
 	<style>
+	#glitch-text{
+		font-size: 5rem;
+		position: relative;
+		font-family: 'Courier New', monospace;
+		text-align: center;
+		text-shadow: 0.05em 0 0 rgba(255,0,0,0.75),
+					-0.025em -0.05em 0 rgba(0,255,0,0.75),
+					0.025em 0.05em 0 rgba(0,0,255,0.75);
+		animation: glitch 500ms infinite;
+	}
+	
+	@keyframes glitch{
+		0%{transform: translate(0);}
+		20%{transform: translate(-5px,5px);}
+		40%{transform: translate(-5px,-5px);}
+		60%{transform: translate(5px,5px);}
+		80%{transform: translate(5px,-5px);}
+		100%{transform: translate(0);}
+	}
 	</style>
 </head>
 	<body>
-	<h1>About</h1>
+	<h1 id="glitch-text">About</h1>
 	<h1>Refresh Σελίδας (Πλήρες καθάρισμα σελίδας): ALT + SHIFT + R</h1>
 	<h2>Προβληματισμός:</h2>
 	<p>[κείμενο]</p>

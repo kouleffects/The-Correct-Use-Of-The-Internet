@@ -100,36 +100,119 @@
 		pointer-events: none;
 	}
 	
-	/*#bait-suggestion{
-		max-width: 500px;
-        margin: 10px auto;
-        padding: 5px;
-        background: rgba(0,0,0,0.05);
-        border-radius: 4px;
-        display: none;
+	/*Overlay Intro Έργου*/
+	#intro-screen{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: black;
+		color: #00ff00;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		z-index: 20000;
+		font-family: 'Courier New', monnospace;
+		transition: opacity 1s ease-out;
 	}
 	
-	.bait-link{
-		color: #1a0dab;
-		text-decoration: underline;
-		cursor: pointer;
-		font-style: italic;
+	#intro-word{
+		font-size: 4rem;
+		text-transform: uppercase;
+		letter-spacing: 10px;
+		margin-bottom: 20px;
+		text-shadow: 2px 2px #ff0000, -2px -2px #0000ff;
+		animation: glitch 500ms infinite;
 	}
 	
-	.bait-link:hover{
-		color: red;
-	}*/
+	.loading-bar{
+		width: 300px;
+		height: 4px;
+		background: #111;
+		margin: 0 auto;
+		position: relative;
+	}
+	
+	.progress{
+		width: 0%;
+		height: 4px;
+		background: #00ff00;
+		box-shadow: 0 0 10px #00ff00;
+		animation: loadProgress 3s forwards;
+	}
+	
+	@keyframes loadProgress{
+		0%{width: 0;}
+		50%{width: 70%;}
+		100%{width: 100%;}
+	}
+	
+	.scanlines{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%
+		height: 100%
+		background: linear-gradient(rgba(18,16,16,0)50%, rgba(0,0,0,0.25)50%),
+					linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.2), rgba(0,0,255,0.06));
+		background-size: 100% 4px, 3px 100%;
+		pointer-events: none;
+	}
+	
+	title-text{
+		animation: glitchReveal 0.8s steps(1) forwards;
+	}
+	
+	@keyframes glitchReveal{
+		0%{
+			opacity: 0;
+			transform: translateX(-50px) skewX(20deg);
+			text-shadow: none;
+		}
+		20%{
+			opacity: 1;
+			transform: translateX(30px) skewX(-20deg);
+			text-shadow: -5px 0 red, 5px 0 blue;
+		}
+		40%{
+			opacity: 0.5;
+			transform: translateX(-20px) skewX(10deg);
+			text-shadow: 5px 0 red, -5px 0 blue;
+		}
+		60%{
+			opacity: 1;
+			transform: translateX(-10px) skewX(-5deg) scale(1.1);
+			text-shadow: -3px 0 red, 3px 0 blue;
+		}
+		80%{
+			opacity: 0.8;
+			transform: skewX(2deg);
+			text-shadow: none;
+		}
+		100%{
+			opacity: 1;
+			transform: translate(0,0) skewX(0);
+			text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+		}
 	</style>
 </head>
 	<body>
+		<div id="intro-screen">
+			<div class="intro-content">
+				<h1 id="intro-word">INITIALIZING...</h1>
+				<div class="loading-bar"><div class="progress"></div></div>
+			</div>
+		</div>
 		<div id="screensaver">
 			<div class="glitch-container">
 				<h1 id="glitch-text" data-text="SYSTEM IDLE">SYSTEM IDLE</h1>
 			</div>
 			<div class="scanlines"></div>
 		</div>
-		<h1>What is the correct use of the internet?</h1>
-		<p><a href="About.html">About</a></p>
+		<h1 class="title-text" style="animation-delay: 1.2s;">What is the correct use of the internet?</h1>
+		<!--<p><a href="About.html">About</a></p>-->
 		<h3>Search</h3>
 		<input id="query" type="text" placeholder="Search with Google or insert a link"></input>
 		<button onClick="runSearch()">Submit</button>

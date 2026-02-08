@@ -148,6 +148,51 @@ async function runSearch(){
 		resultsDiv.appendChild(resultEl);
 		}
 	}
+	
+//Intro
+const introWords=[
+	"SURVEILLANCE", 
+	"PRIVACY", 
+	"CONTROL", 
+	"CORRUPTION", 
+	"LAWS", 
+	"TRUTH", 
+	"LIES", 
+	"ACCESS GRANTED"
+];
+
+let currentWordIndex=0;
+
+function runIntro(){
+	const introWordEl=document.getElementById("intro-word");
+	const introScreen=document.getElementById("intro-screen");
+	
+	if(!introScreen||!introWordEl){
+		console.error("intro elements not found!");
+		return;
+	}
+	
+	const wordInterval=setInterval(()=>{
+		if(currentWordIndex<introWords.length){
+			introWordEl.innerText=introWords[currentWordIndex];
+			
+			introScreen.style.paddingLeft=`${Math.random()*4-2}px`;
+			currentWordIndex++;
+		}
+		else
+		{
+			clearInterval(wordInterval);
+			
+			introScreen.style.opacity=0;
+			introScreen.style.pointerEvents="none";
+			
+			setTimeout(()=>{
+				introScreen.style.display="none";
+				console.log("Intro finished. Search active.");
+			},1000);
+		}
+	}, 400);
+}
 
 //Screen Saver
 const words=[
@@ -193,4 +238,7 @@ window.onmousemove=resetTimer;
 window.onmousedown=resetTimer;
 window.onkeydown=resetTimer;
 
-resetTimer();
+window.onload=()=>{
+	runIntro();
+	resetTimer();
+}

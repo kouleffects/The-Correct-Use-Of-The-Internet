@@ -13,29 +13,71 @@
 		transition: 0.5s;
 		background-color: black;
 	}
-	.result-item{
-		margin-bottom: 20px;
+	
+	.terminated-text{
+		opacity: 0;
+		color: #00ff00;	/*#ff0000=red || #00ff00=green*/
+		text-shadow: 0 0 10px; rgba(255, 0, 0, 0.7);
+		font-family: 'Courier New', monospace;
+		margin: 20px;
+		display: inline-block;
+		animation: glitchReveal 0.8s steps(1) forwards;
 	}
-	.result-item a{
-		color: blue;
-		font-size: 18px;
-		text-decoration: none;
+	
+	button{
+		background: transparent;
+		color: #ff0000;
+		border: 1px solid #00ff00;
+		padding: 10px 20px;
+		font-family: monospace;
+		cursor: pointer;
+		animation: glitchReveal 0.8s steps(1) forwards;
 	}
-	input{
-		padding: 10px;
-		width: 300px;
+	
+	button:hover{
+		background: #00ff00;
+		color: black;
+	}
+	
+	@keyframes glitchReveal{
+		0%{
+			opacity: 0;
+			transform: translateX(-50px) skewX(20deg);
+			text-shadow: none;
+		}
+		20%{
+			opacity: 1;
+			transform: translateX(30px) skewX(-20deg);
+			text-shadow: -5px 0 red, 5px 0 blue;
+		}
+		40%{
+			opacity: 0.5;
+			transform: translateX(-20px) skewX(10deg);
+			text-shadow: 5px 0 red, -5px 0 blue;
+		}
+		60%{
+			opacity: 1;
+			transform: translateX(-10px) skewX(-5deg) scale(1.1);
+			text-shadow: -3px 0 red, 3px 0 blue;
+		}
+		80%{
+			opacity: 0.8;
+			transform: skewX(2deg);
+			text-shadow: none;
+		}
+		100%{
+			opacity: 1;
+			transform: translate(0,0) skewX(0);
+			text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+		}
 	}
 	</style>
 </head>
 	<body>
-		<!--<h1>What is the correct use of the internet?</h1>-->
-		<a href="About.html">About</a>
-		<!--<h3>Search</h3>-->
-		<!--<input id="query" type="text" placeholder="Search with Google or insert a link"></input>-->
-		<h2 style="color: lime">ACCESS TERMINATED</h2>
-		<p style="color: red">Your access to information has been revoked!</p>
-		<button id="button">Go Back</button>
-		<div id="results"></div>
+		<h2 class="terminated-text" style="animation-delay: 0.2s; font-size: 50px;">ACCESS TERMINATED</h2>
+		<p class="terminated-text" style="animation-delay: 1.2s; font-size: 20px;">Your access to information has been revoked!</p>
+		<button id="button" class="terminated-text" style="animation-delay: 2.5s;">REBOOT SYSTEM</button>
+		<p><a href="About.html" class="terminated-text" style="animation-delay: 10s; font-size: 20px; position: 100px;">About</a></p>
 		<script>
 		let btn=document.querySelector("button");
 		
